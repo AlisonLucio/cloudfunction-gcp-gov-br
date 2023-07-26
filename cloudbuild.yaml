@@ -1,5 +1,5 @@
 steps:
-- name: 'docker.io/library/python:3.10'
+- name: 'docker.io/library/python:3.11.4'
   entrypoint: /bin/sh
   # Run pip install in the same build step
   # (pip packages won't be preserved in future steps!)
