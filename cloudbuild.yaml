@@ -8,5 +8,9 @@ steps:
 - name: 'gcr.io/cloud-builders/gcloud'
   args: ['functions', 'deploy', 'cloudfunction-gcp-gov-br', '--trigger-http', '--runtime', 'python311', '--entry-point', 'call_api']
 # dir: 'function/dir/from/repo/root'
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'build', '-t', '${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/${_IMAGE}', '.' ]
+images:
+- '${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/${_IMAGE}'
 options:
   logging: CLOUD_LOGGING_ONLY
