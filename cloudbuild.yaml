@@ -1,21 +1,11 @@
-steps: 
-# build a imagem do container  
-- name: 'gcr.io/cloud-builders/docker' 
-  args: ['build', '-t', 'gcr.io/$PROJECT_ID/cloudfunction-gcp-gov-br:$COMMIT_SHA', ' .'] 
-# envie a imagem do contêiner para o Container Registry 
-- nome: 'gcr.io/cloud-builders/docker' 
-  args: ['push', 'gcr.io/$PROJECT_ID/cloudfunction-gcp-gov-br:$COMMIT_SHA'] 
-# Deploy imagem de contêiner para Cloud Run 
-- nome: 'gcr.io/cloud-builders/gcloud' 
-  args: 
-  - 'run' 
-  - 'deploy' 
-  - 'cloudfunction-gcp-gov-br' 
-  - '--image' 
-  - 'gcr.io/$PROJECT_ID/cloudfunction-gcp-gov-br:$COMMIT_SHA' 
-  - '--region' 
-  - 'us-central1' 
-  - '--platform' 
-  - 'managed' 
-imagens: 
-- 'gcr.io/$PROJECT_ID/cloudfunction-gcp-gov-br:$COMMIT_SHA'
+steps:
+  # Docker Build
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t',
+           'us-central1-docker.pkg.dev/${PROJECT_ID}/cloudfunction-gcp-gov-br/gcp-gov-br',
+           '.']
+
+  # Docker Push
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push',
+           'us-central1-docker.pkg.dev/${PROJECT_ID}/cloudfunction-gcp-gov-br/gcp-gov-br']
