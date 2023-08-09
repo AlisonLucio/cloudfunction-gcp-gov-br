@@ -17,8 +17,6 @@ def call_api(request):
         <https://flask.palletsprojects.com/en/1.1.x/api/#flask.make_response>.
     """
 
-    request_args = request.args
-
     URL_API= request.args.get('URL_API')
     PROJECT_ID= request.args.get('PROJECT_ID')
     BUCKET_NAME= request.args.get('BUCKET_NAME')
